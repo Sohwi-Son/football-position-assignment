@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= quarter %> 쿼터 참석 선수 선택</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1><%= quarter %> 쿼터 참석 선수 선택</h1>
+
+      <form action="/assign/<%= quarter %>/confirm" method="POST">
+        <section>
+          <h2>기존 선수</h2>
+          <% if (existingPlayers.length === 0) { %>
+          <p>등록된 기존 선수가 없습니다.</p>
+          <% } else { %> <% existingPlayers.forEach(player => { %>
+          <div>
+            <input
+              type="checkbox"
+              id="existing-<%= player._id %>"
+              name="selectedPlayers"
+              value="<%= player._id %>"
+            />
+            <label for="existing-<%= player._id %>">
+              <%= player.name %> - <%= player.position %>, 등급: <%=
+              player.grade %>, 출전: <%= player.appearances || 0 %>회
+            </label>
+          </div>
+          <% }) %> <% } %>
+        </section>
+
+        <section>
+          <h2>용병 선수</h2>
+          <% if (temporaryPlayers.length === 0) { %>
+          <p>등록된 용병 선수가 없습니다.</p>
+          <% } else { %> <% temporaryPlayers.forEach(player => { %>
+          <div>
+            <input
+              type="checkbox"
+              id="temporary-<%= player._id %>"
+              name="selectedPlayers"
+              value="<%= player._id %>"
+            />
+            <label for="temporary-<%= player._id %>">
+              <%= player.name %> - <%= player.position %>, 등급: <%=
+              player.grade %>, 출전: <%= player.appearances || 0 %>회
+            </label>
+          </div>
+          <% }) %> <% } %>
+        </section>
+
+        <button type="submit" class="btn">다음</button>
+      </form>
+
+      <a href="/" class="btn secondary">메인으로</a>
+    </main>
+  </body>
+</html>

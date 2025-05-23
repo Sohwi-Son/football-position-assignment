@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= isTemporary ? '용병 선수 등록' : '기존 선수 등록' %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      main.container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #e6f0e6;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(34, 136, 34, 0.3);
+      }
+      h1 {
+        color: #228822;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      form div {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        color: #1a5d1a;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #88bb88;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      button.btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #228822;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button.btn:hover {
+        background-color: #2eb82e;
+      }
+      a.btn.secondary {
+        display: block;
+        margin-top: 15px;
+        text-align: center;
+        color: #228822;
+        text-decoration: none;
+      }
+      a.btn.secondary:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1><%= isTemporary ? '용병 선수 등록' : '기존 선수 등록' %></h1>
+      <form
+        action="<%= isTemporary ? '/players/temporary' : '/players/existing' %>"
+        method="POST"
+      >
+        <div>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="position">포지션</label>
+          <select id="position" name="position" required>
+            <option value="">선택하세요</option>
+            <option value="ST">ST (스트라이커)</option>
+            <option value="W">W (윙어)</option>
+            <option value="MF">MF (미드필더)</option>
+            <option value="FB">FB (풀백)</option>
+            <option value="CB">CB (센터백)</option>
+          </select>
+        </div>
+        <div>
+          <label for="grade">등급</label>
+          <select id="grade" name="grade" required>
+            <option value="">선택하세요</option>
+            <option value="S">S</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">저장</button>
+      </form>
+      <a href="/" class="btn secondary">메인으로</a>
+    </main>
+  </body>
+</html>

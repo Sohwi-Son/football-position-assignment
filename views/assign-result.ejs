@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>포지션 배치 결과</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      /* 축구 필드 스타일 */
+      .field {
+        max-width: 600px;
+        margin: 0 auto;
+        background: linear-gradient(to top, #0b610b, #2eb82e);
+        border: 2px solid #004d00;
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+      }
+      .position {
+        text-align: center;
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .position.st {
+        background-color: #66cc66;
+      }
+      .position.w {
+        background-color: #55aa55;
+      }
+      .position.mf {
+        background-color: #449944;
+      }
+      .position.fb {
+        background-color: #338833;
+      }
+      .position.cb {
+        background-color: #227722;
+      }
+
+      /* 선수 이름 클릭 시 교체 가능하게 처리 */
+      .position:hover {
+        background-color: #a3dca3;
+        color: #004400;
+      }
+
+      .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #228822;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background-color: #2eb82e;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>포지션 배치 결과 - <%= quarter %> 쿼터</h1>
+
+      <div class="field">
+        <% positions.forEach(pos => { %>
+        <div
+          class="position <%= pos.position.toLowerCase() %>"
+          data-position="<%= pos.position %>"
+        >
+          <%= pos.position %> : <%= pos.player ? pos.player.name : '빈 자리' %>
+        </div>
+        <% }) %>
+      </div>
+
+      <form action="/assign/edit" method="POST">
+        <!-- 조작자가 선수를 바꾸기 위한 폼(예시) -->
+        <!-- 실제 교체 UI는 JS로 구현할 수 있습니다 -->
+        <button type="submit" class="btn">변경사항 저장</button>
+      </form>
+
+      <a href="/" class="btn secondary">메인으로</a>
+    </main>
+  </body>
+</html>
