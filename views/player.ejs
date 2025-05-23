@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>선수 목록</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>선수 목록</h1>
+
+      <section>
+        <h2>기존 선수</h2>
+        <ul class="player-list">
+          <% players.existing.forEach(player => { %>
+          <li>
+            <%= player.name %> - <%= player.position %> - 등급: <%= player.grade
+            %>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <section>
+        <h2>용병 선수</h2>
+        <ul class="player-list">
+          <% players.temporary.forEach(player => { %>
+          <li>
+            <%= player.name %> - <%= player.position %> - 등급: <%= player.grade
+            %>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <a href="/" class="btn">메인으로</a>
+    </main>
+  </body>
+</html>
